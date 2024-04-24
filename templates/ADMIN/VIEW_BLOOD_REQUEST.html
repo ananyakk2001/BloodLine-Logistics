@@ -1,0 +1,48 @@
+{% extends 'admin/newindex.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+    <style>
+        th {
+            background-color: #b21f2d
+        }
+    </style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+<table border="1" class="table table-bordered">
+  <tr style="background-color: #b21f2d">
+    <th scope="col" style="background-color: #b21f2d">#</th>
+    <th style="background-color: #b21f2d">SEEKER</th>
+    <th style="background-color: #b21f2d">BLOODGROUP</th>
+    <th style="background-color: #b21f2d">QUANTITY</th>
+    <th style="background-color: #b21f2d">DATE</th>
+    <th style="background-color: #b21f2d">VERIFY</th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}&nbsp;</td>
+    <td align="left"><i class="fa fa-user"></i> {{ i.SEEKER.name }}<br>
+        <i class="fa fa-phone"></i> {{ i.SEEKER.phone }} </td>
+    <td>{{ i.BLOOD_ID.blood_name }}&nbsp;</td>
+    <td>{{ i.quantity}}</td>
+    <td>{{ i.date }}</td>
+    {% if i.status == "pending" %}
+    <td><p><a href="/verifyrequest/{{ i.id }}/{{ i.BLOOD_ID_id }}"class="btn btn-outline-success" style="width: 200px">ACCEPT</a></p>
+    <br><p><a href="/reqproceed/{{ i.id }}"class="btn btn-outline-primary" style="width: 200px">PROCEED TO DONOR</a></p></td>
+        {% elif i.status == "willing" %}
+        <td colspan="2" align="center">
+        <a href="/willing_donor/{{ i.id }}#aaa">View Willingness</a>
+        </td>
+    {% endif %}
+  </tr>
+    {% endfor %}
+</table>
+</form>
+</body>
+</html>
+{% endblock %}

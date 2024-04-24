@@ -1,0 +1,40 @@
+{% extends 'admin/newindex.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+    <style>
+        th {
+            background-color: #b21f2d
+        }
+    </style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+<table width="529" border="1" class="table table-bordered">
+  <tr >
+    <th width="12" scope="col" style="background-color: #b22525" >#</th>
+    <th width="173" scope="col" style="background-color: #b21f2d">BLOODGROUP</th>
+    <th width="173" scope="col" style="background-color: #b21f2d">STOCK</th>
+    <th width="173" scope="col" style="background-color: #b21f2d"></th>
+    <th width="173" scope="col" style="background-color: #b21f2d"></th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}&nbsp;</td>
+    <td>{{ i.blood_name }}&nbsp;</td>
+    <td>{{ i.stock }}&nbsp;</td>
+  <td><a href="/delete_blood/{{ i.id }}#aaa" class="btn btn-outline-danger btn-sm" style="width: 25%;">Delete</a> </td>
+  <td><a href="/blood_stock/{{ i.id }}#aaa" class="btn btn-outline-primary btn-sm" style="width: 50%">Add Stock</a> </td>
+
+
+  </tr>
+    {% endfor %}
+</table>
+</form>
+</body>
+</html>
+{% endblock %}

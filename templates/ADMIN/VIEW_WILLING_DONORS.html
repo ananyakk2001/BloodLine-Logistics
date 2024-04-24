@@ -1,0 +1,40 @@
+{% extends 'admin/newindex.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+     <style>
+        th {
+            background-color: #b21f2d
+        }
+    </style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table class="table table-striped" border="1">
+    <tr>
+      <th scope="col"style="background-color: #b21f2d">#</th>
+      <th  scope="col"style="background-color: #b21f2d">Name</th>
+      <th width="67" scope="col"style="background-color: #b21f2d">Email</th>
+      <th width="65" scope="col"style="background-color: #b21f2d">Phone</th>
+      <th width="110" scope="col"style="background-color: #b21f2d">Address</th>
+      <th width="156" scope="col"style="background-color: #b21f2d">Gender</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>&nbsp;{{ i.DONOR.name}}</td>
+      <td>{{i.DONOR.email}}</td>
+      <td>{{ i.DONOR.phone }}</td>
+      <td>{{i.DONOR.house}}<br>{{i.DONOR.pin}}<br>{{i.DONOR.post}}</td>
+      <td>{{i.DONOR.gender}}</td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "SEEKER/newindex.html" %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+
+<form id="form1" name="form1" method="post" action="/view_Seeker_Profile_POST">
+{% csrf_token %}
+  <table class="table table-dark" style="width: 600px" align="center" border="1">
+    <tr>
+      <th scope="row" style="background-color: #b21f2d">Name</th>
+      <td>
+      <input type="text"  name="textfield" id="textfield" value="{{ data.name }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th scope="row"style="background-color: #b21f2d">Email</th>
+      <td>
+      <input type="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="textfield2" id="textfield2" value="{{ data.email }}" class="form-control"  readonly/></td>
+    </tr>
+    <tr>
+      <th scope="row"style="background-color: #b21f2d">Phone</th>
+      <td>
+      <input type="tel" pattern="[6789][0-9]{9}" name="textfield3" id="textfield3" value="{{ data.phone }}" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <th scope="row"style="background-color: #b21f2d">Blood Group</th>
+      <td>
+        <select name="select" id="select" class="form-control">
+            {%  for i in data1%}
+            <option value="{{ i.id }}"  {% if i.id == data.BLOOD_ID_id %} selected {% endif %}>{{ i.blood_name }}</option>
+            {% endfor %}
+      </select></td>
+    </tr>
+    <tr>
+      <th scope="row"style="background-color: #b21f2d">Gender</th>
+      <td align="left"><input type="radio" name="radio" id="radio" value="Male" {% if data.gender == "Male" %} checked {% endif %}/>Male<br />
+        <input type="radio" name="radio" id="radio" value="Female"{%  if data.gender == "Female" %}checked{% endif %} />Female<br>
+         <input type="radio" name="radio" id="radio3" value="Others"{%  if data.gender == "Others" %}checked{% endif %} /> Others
+      </td>
+
+    </tr>
+    <tr>
+      <th colspan="2" scope="row"><input type="submit" name="button" class="btn btn-outline-primary" id="button" value="Update" /></th>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

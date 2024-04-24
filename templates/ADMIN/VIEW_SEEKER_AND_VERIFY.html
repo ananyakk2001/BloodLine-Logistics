@@ -1,0 +1,47 @@
+{% extends 'admin/newindex.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+     <style>
+        th {
+            background-color: #b21f2d
+        }
+    </style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+<table class="table table-bordered">
+  <tr style="background-color: #b21f2d">
+    <th width="12" scope="col"style="background-color: #b21f2d">#</th>
+    <th width="73" scope="col"style="background-color: #b21f2d">NAME</th>
+    <th width="101" scope="col"style="background-color: #b21f2d">GENDER</th>
+    <th width="93" scope="col"style="background-color: #b21f2d">BLOOD GROUP</th>
+{#    <th width="110" scope="col">ADDRESS</th>#}
+    <th width="107" scope="col"style="background-color: #b21f2d">PHONE NUMBER</th>
+    <th width="90" scope="col"style="background-color: #b21f2d">EMAIL</th>
+    <th width="111" scope="col"style="background-color: #b21f2d">VERIFY</th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ i.name }}&nbsp;</td>
+    <td>{{ i.gender }}&nbsp;</td>
+    <td>{{ i.BLOOD_ID.blood_name }}&nbsp;</td>
+{#    <td>{{ i.house }}<br>{{ i.post }}<br>{{ i.pin }}&nbsp;</td>#}
+    <td>{{ i.phone }}</td>
+    <td>{{ i.email }}</td>
+
+    <td><p><a href="/accept_seeker/{{ i.LOGIN.id }}/{{ i.email }}" class="btn btn-outline-primary btn-sm" style="width: 100%">ACCEPT</a></p>
+        <br>
+    <p><a href="/reject_seeker/{{ i.LOGIN.id }}/{{ i.email }}" class="btn btn-outline-danger" style="width:100%;">REJECT</a></p></td>
+  </tr>
+    {% endfor %}
+</table>
+</form>
+</body>
+</html>
+{% endblock %}
